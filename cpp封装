@@ -1,0 +1,76 @@
+#include<iostream>
+#include <string>
+#include<math.h>
+using namespace std;
+class point {
+public:
+	//设置x
+	void setx(int x) {
+		m_x = x;
+	}
+	//获取x
+	int getx(void) {
+		return m_x;
+	}
+	//设置y
+	void sety(int y) {
+		m_y = y;
+	}
+	//获取y
+	int gety(void) {
+		return m_y;
+	}
+private:
+	int m_x;
+	int m_y;
+};
+class circle {
+public:
+	//设置半径
+	void setr(int r) {
+		m_r = r;
+	}
+	//获取半径
+	int getr() {
+		return m_r;
+	}
+	//设置圆心
+	void setpointcenter(point center) {
+		m_center = center;
+	}
+	//获取圆心
+	point getcenter() {
+		return m_center;
+}
+private:
+	int m_r;
+	point m_center;
+
+};
+void isincircle(circle& c, point& p) {
+	int g=(c.getcenter().getx() - p.getx()) * (c.getcenter().getx() - p.getx()) +
+		      ( (c.getcenter().gety()-p.gety()) * (c.getcenter().gety()-p.gety()));
+	int R = c.getr() * c.getr();
+	if (g > R) {
+		cout << "该点在圆外" << endl;
+	}
+	else if (g == R) {
+		cout << "该点在圆上" << endl;
+	}
+	else {
+		cout << "该点在圆内" << endl;
+	}
+}
+int main() {
+	circle c1;
+	point p;
+	p.setx(10);
+	p.sety(-10);
+	point center;
+	center.setx(10);
+	center.sety(0);
+	c1.setr(10);
+	c1.setpointcenter(center);
+	isincircle(c1, p);
+	return 0;
+}
